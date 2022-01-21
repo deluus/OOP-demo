@@ -1,10 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Manager = require ('./lib/manager');
+const manager = require ('./lib/manager');
+const engineer = require('./lib/engineer')
 
 const employee = [];
 
-// actions needed
+// actions needed - all seperate fxn
 
 // ask them for manager info
 
@@ -24,14 +25,14 @@ function askForManagerInfor (){
   })
 
 }
-async function askForManagerInfor() {
+// async function askForManagerInfor() {
 
   // promt the user for data
-  const answer = await inquirer.prompt( questions)
+  // const answer = await inquirer.prompt( questions)
 
   // then create and store and boject for the manager
-  emmployee.push(new Manager(*data from inquirer*));
-}
+//   emmployee.push(new Manager(*data from inquirer*));
+// }
 
 inquirer
   .prompt([
@@ -78,8 +79,11 @@ inquirer
       },
   ])
 
-  .then((ansers) => {
-    const htmlTemplet =
+  .then((answers) => {
+
+    const { firstName , id , emial, officeNumber} = answers
+
+    const manager = 
   
 
 
