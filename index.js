@@ -13,13 +13,13 @@ function askForManagerInfor (){
 
   // prompt the user for the data
   inquirer
-  .prompt()
+  .prompt(questions)
   .then((answers ) => {
     // then  creat and store an  opbject for the manager
-    employee.push(new Manager( *pass in the data from inquirer*) );
+    employee.push(new Manager( answer.manager,) );
 
     // then "ask what they would like to do next "
-    asForNextAction ();
+    askForNextAction ();
 
 
   })
@@ -89,7 +89,7 @@ inquirer
 
 
   fs.writeFile( 
-    'index.html', readMeTemplate,(answers),
+    'index.html', teamTemplate,(answers),
  (err) => {
  err ? console.error(err) : console.log('Generating README...');
  } )
