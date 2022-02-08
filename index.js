@@ -16,7 +16,7 @@ function askForManagerInfor (){
   .prompt(questions)
   .then((answers ) => {
     // then  creat and store an  opbject for the manager
-    employee.push(new Manager( answer.manager,) );
+    employee.push(new Manager( answer.managerName, answer.managerId, answer.managerEmail, answer.managerOfficeNumber) );
 
     // then "ask what they would like to do next "
     askForNextAction ();
@@ -38,44 +38,23 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'What is your project title?',
+      message: 'What is your name?',
       name: 'title',
     },
     {
       type: 'input',
-      message: 'What was your motivation?',
+      message: 'What is your Employee ID?',
       name: 'motivation',
     },
     {
       type: 'input',
-      message: 'why did you build this project?',
+      message: 'What is your emial address?',
       name: 'project',
     },
     {
         type: 'input',
-        message: 'what problems did it solve?',
+        message: 'What is you office number?',
         name: 'solve',
-      },
-      {
-      type: 'input',
-      message: 'what did you learn?',
-      name: 'learn'
-    },
-    {
-        type: 'input',
-        message: 'what are the necessary dependencies you need to install?',
-        name: 'install',
-        choices : [ "inquirer", "badmath"]
-      },
-      {
-        type: 'input',
-        message: 'GitHub username',
-        name: 'username'
-      },
-      {
-        type: 'input',
-        message: 'Email address',
-        name: 'address'
       },
   ])
 
