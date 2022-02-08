@@ -23,16 +23,7 @@ function askForManagerInfor (){
 
 
   })
-
 }
-// async function askForManagerInfor() {
-
-  // promt the user for data
-  // const answer = await inquirer.prompt( questions)
-
-  // then create and store and boject for the manager
-//   emmployee.push(new Manager(*data from inquirer*));
-// }
 
 inquirer
   .prompt([
@@ -65,12 +56,10 @@ inquirer
     const manager = 
   
 
-
-
   fs.writeFile( 
     'index.html', teamTemplate,(answers),
  (err) => {
- err ? console.error(err) : console.log('Generating README...');
+ err ? console.error(err) : console.log('Generating HTML...');
  } )
 
   });
