@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const manager = require ('./lib/manager');
-const engineer = require('./lib/engineer')
+const engineer = require('./lib/engineer');
 
 const employee = [];
 
@@ -9,13 +9,38 @@ const employee = [];
 
 // ask them for manager info
 
-function askForManagerInfor (){
+function askForManagerInfo (){
 
   // prompt the user for the data
   inquirer
-  .prompt(questions)
+  .prompt([
+  
+      {
+        type: 'input',
+        message: 'What is your name?',
+        name: 'title',
+      },
+      {
+        type: 'input',
+        message: 'What is your Employee ID?',
+        name: 'motivation',
+      },
+      {
+        type: 'input',
+        message: 'What is your emial address?',
+        name: 'project',
+      },
+      {
+          type: 'input',
+          message: 'What is you office number?',
+          name: 'solve',
+        },
+    ])
   .then((answers ) => {
-    // then  creat and store an  opbject for the manager
+    // then  creat and store an  object for the manager
+    const { name, id, email, officeNumber} = answers
+
+    const manger = new Manger (name, id , email, officeNumber);
     employee.push(new Manager( answer.managerName, answer.managerId, answer.managerEmail, answer.managerOfficeNumber) );
 
     // then "ask what they would like to do next "
@@ -25,35 +50,13 @@ function askForManagerInfor (){
   })
 }
 
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      message: 'What is your name?',
-      name: 'title',
-    },
-    {
-      type: 'input',
-      message: 'What is your Employee ID?',
-      name: 'motivation',
-    },
-    {
-      type: 'input',
-      message: 'What is your emial address?',
-      name: 'project',
-    },
-    {
-        type: 'input',
-        message: 'What is you office number?',
-        name: 'solve',
-      },
-  ])
 
-  .then((answers) => {
 
-    const { firstName , id , email, officeNumber} = answers
+  // .then((answers) => {
 
-    const manager = 
+  //   const { firstName , id , email, officeNumber} = answers
+
+  //   const manager = 
   
 
   fs.writeFile( 
