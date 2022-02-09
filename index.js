@@ -51,7 +51,7 @@ inquirer
 
   .then((answers) => {
 
-    const { firstName , id , emial, officeNumber} = answers
+    const { firstName , id , email, officeNumber} = answers
 
     const manager = 
   
