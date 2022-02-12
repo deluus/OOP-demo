@@ -29,7 +29,7 @@ function askForManagerInfo (){
       },
       {
         type: 'input',
-        message: 'What is your managers mail address?',
+        message: 'What is your managers email address?',
         name: 'getRole',
       },
       {
@@ -38,37 +38,126 @@ function askForManagerInfo (){
           name: 'getofficeNumber',
         },
     ])
+  
 
 
-  .then((answers ) => {
+  .then(answers  => {
     // then  creat and store an  object for the manager
-    const { name, id, email, officeNumber} = answers
-
-    const manager = new Manager (name, id , email, officeNumber);
-
-    employee.push(new Manager( answer.managerName, answer.managerId, answer.managerEmail, answer.managerofficeNumber) );
+    employee.push(new manager( answers.getName, answers.getId, answers.getEmail, answers.getofficeNumber) );
 
     // then "ask what they would like to do next "
 
-    // askForNextAction ();
-    // inquirer
-    // .prompt([
-    //   {
-    //     type: 'list',
-    //     message: 'who would you like to add?',
-    //     choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+    // askForNextAction ()
+    inquirer
+    .prompt([
+      {  
+        name : 'next',
+        type: 'list',
+        message: 'What would you like to do next?',
+        choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+    
+      },
+    ])
+    .then(answers  => {
+      const {next} = answers;
+      if( next === 'add an engineer') {
+        inquirer
+        .prompt([
+          {
+            type: 'input',
+            message: 'What is your engineers name?',
+            name: 'getName',
+          },
+          {
+            type: 'input',
+            message: 'What is your engineers ID?',
+            name: 'getId',
+          },
+          {
+            type: 'input',
+            message: 'What is your engineers email address?',
+            name: 'getRole',
+          },
+          {
+              type: 'input',
+              message: 'What is you engineers github?',
+              name: 'getGithub',
+            },
+        ])
+      
+      
+      .then((answers ) => {
+        // then  creat and store an  object for the manager
+        employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getGithub) );
+    
+        // then "ask what they would like to do next "
+    
+        // askForNextAction ()
+        inquirer
+        .prompt([
+          {
+            type: 'list',
+            message: 'What would you like to do next?',
+            choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+          }
+        ])
 
-    //   }
-    // ])
-    // .then(answers => {
-    //   const {next} = answers:
-
-    // })
+        .then(answers => {
+          const {next} = answers;
+          if( next === 'add an intern') {
+            inquirer
+            .prompt([
+              {
+                type: 'input',
+                message: 'What is your interns name?',
+                name: 'getName',
+              },
+              {
+                type: 'input',
+                message: 'What is your interns ID?',
+                name: 'getId',
+              },
+              {
+                type: 'input',
+                message: 'What is your interns email address?',
+                name: 'getRole',
+              },
+              {
+                  type: 'input',
+                  message: 'What is you interns school?',
+                  name: 'getGithub',
+                },
+            ])
+          
+          .then((answers ) => {
+            // then  creat and store an  object for the manager
+            employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getSchool) );
+        
+            // then "ask what they would like to do next "
+        
+            // askForNextAction ()
+            inquirer
+            .prompt([
+              {
+                type: 'list',
+                message: 'What would you like to do next?',
+                choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+            
+              }
+            ]);
+          })
+        }
+      }
+    
+        
+        
+        );
 
   fs.writeFile( 
     'index.html', teamTemplate,(answers),
  (err) => {
  err ? console.error(err) : console.log('Generating HTML...');
     } )
-
-  });
+  })
+}
+    });
