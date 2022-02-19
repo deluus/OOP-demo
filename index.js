@@ -1,17 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const employee = require ('./lib/employee')
-const manager = require ('./lib/manager');
-const engineer = require('./lib/engineer');
-const intern = require ('./lib/intern');
+const Employee = require ('./lib/Employee')
+const Manager = require ('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require ('./lib/Intern');
 
-const employee = [];
+// const employee = [];
 
 // actions needed - all seperate fxn
 
 // ask them for manager info
 
-function askForManagerInfo (){
+function askForManagerInfo() {
 
   // prompt the user for the data
   inquirer
@@ -39,125 +39,190 @@ function askForManagerInfo (){
         },
     ])
   
+  
+  
 
 
-  .then(answers  => {
-    // then  creat and store an  object for the manager
-    employee.push(new manager( answers.getName, answers.getId, answers.getEmail, answers.getofficeNumber) );
+  .then((answers) => {
+    // then  create and store an  object for the manager
+    Employee.push(new manager( answers.getName, answers.getId, answers.getEmail, answers.getofficeNumber) ) 
+  });
+}
+askForManagerInfo();
 
-    // then "ask what they would like to do next "
+  // then "ask what they would like to do next "
 
-    // askForNextAction ()
+    askForNextAction ()
     inquirer
     .prompt([
       {  
-        name : 'next',
         type: 'list',
+        name : 'next',
         message: 'What would you like to do next?',
         choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
     
       },
     ])
-    .then(answers  => {
-      const {next} = answers;
-      if( next === 'add an engineer') {
-        inquirer
-        .prompt([
-          {
-            type: 'input',
-            message: 'What is your engineers name?',
-            name: 'getName',
-          },
-          {
-            type: 'input',
-            message: 'What is your engineers ID?',
-            name: 'getId',
-          },
-          {
-            type: 'input',
-            message: 'What is your engineers email address?',
-            name: 'getRole',
-          },
-          {
-              type: 'input',
-              message: 'What is you engineers github?',
-              name: 'getGithub',
-            },
-        ])
+  
+  
+
+
+function askForEngineerInfo() {
+
+  // prompt the user for the data
+  inquirer
+  .prompt([
+  
+      {
+        type: 'input',
+        message: 'What is your engineers name?',
+        name: 'getName',
+      },
+      {
+        type: 'input',
+        message: 'What is your engineers ID?',
+        name: 'getId',
+      },
+      {
+        type: 'input',
+        message: 'What is your engineers email address?',
+        name: 'getRole',
+      },
+      {
+          type: 'input',
+          message: 'What is you engineers GitHub?',
+          name: 'getGithub',
+        },
+    ])
+  
+  
+  
+
+
+  .then((answers) => {
+    // then  create and store an  object for the manager
+    employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getGithub) ) 
+  });
+}
+askForEngineerInfo();
+
+
+  
+    // .then(answers  => {
+    //   const {next} = answers;
+    //   if( next === 'add an engineer') {
+
+    //     function askForEngineerInfo(){
+    //     inquirer
+    //     .prompt([
+    //       {
+    //         type: 'input',
+    //         message: 'What is your engineers name?',
+    //         name: 'getName',
+    //       },
+    //       {
+    //         type: 'input',
+    //         message: 'What is your engineers ID?',
+    //         name: 'getId',
+    //       },
+    //       {
+    //         type: 'input',
+    //         message: 'What is your engineers email address?',
+    //         name: 'getRole',
+    //       },
+    //       {
+    //           type: 'input',
+    //           message: 'What is you engineers github?',
+    //           name: 'getGithub',
+    //         },
+    //     ])
       
       
-      .then((answers ) => {
-        // then  creat and store an  object for the manager
-        employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getGithub) );
+      
+    //   .then((answers ) => {
+    //     // then  creat and store an  object for the manager
+    //     employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getGithub))
+    //   });
+    // }
+    
     
         // then "ask what they would like to do next "
     
-        // askForNextAction ()
-        inquirer
-        .prompt([
-          {
-            type: 'list',
-            message: 'What would you like to do next?',
-            choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
-          }
-        ])
+      // function 
+      //   inquirer
+      //   .prompt([
+      //     {
+      //       type: 'list',
+      //       message: 'What would you like to do next?',
+      //       choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+      //     }
+      //   ])
 
-        .then(answers => {
-          const {next} = answers;
-          if( next === 'add an intern') {
-            inquirer
-            .prompt([
-              {
-                type: 'input',
-                message: 'What is your interns name?',
-                name: 'getName',
-              },
-              {
-                type: 'input',
-                message: 'What is your interns ID?',
-                name: 'getId',
-              },
-              {
-                type: 'input',
-                message: 'What is your interns email address?',
-                name: 'getRole',
-              },
-              {
-                  type: 'input',
-                  message: 'What is you interns school?',
-                  name: 'getGithub',
-                },
-            ])
+      //   .then(answers => {
+      //     const {next} = answers;
           
-          .then((answers ) => {
-            // then  creat and store an  object for the manager
-            employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getSchool) );
+      //     function askForInternInfo ()
+      //     if( next === 'add an intern') {
+      //       inquirer
+      //       .prompt([
+      //         {
+      //           type: 'input',
+      //           message: 'What is your interns name?',
+      //           name: 'getName',
+      //         },
+      //         {
+      //           type: 'input',
+      //           message: 'What is your interns ID?',
+      //           name: 'getId',
+      //         },
+      //         {
+      //           type: 'input',
+      //           message: 'What is your interns email address?',
+      //           name: 'getRole',
+      //         },
+      //         {
+      //             type: 'input',
+      //             message: 'What is you interns school?',
+      //             name: 'getGithub',
+      //           },
+      //       ])
+
+      //     // } else if (next === 'add engineer') {
+      //     //   addEngineer();
+      //     // } else if (next === 'complete team'){
+      //     //  generateHtml()
+      //     // };
+          
+      //     .then((answers ) => {
+      //       // then  creat and store an  object for the manager
+      //       employee.push(new engineer( answers.getName, answers.getId, answers.getEmail, answers.getSchool) );
         
             // then "ask what they would like to do next "
         
-            // askForNextAction ()
-            inquirer
-            .prompt([
-              {
-                type: 'list',
-                message: 'What would you like to do next?',
-                choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
+      //       function askForNextAction (){
+      //       inquirer
+      //       .prompt([
+      //         {
+      //           type: 'list',
+      //           message: 'What would you like to do next?',
+      //           choices: ['add a manager', 'add an engineer', 'add an intern', 'complete team']
             
-              }
-            ]);
-          })
-        }
-      }
+      //         }
+      //       ]);
+      //     })
+      //   }
+      // }
     
         
         
-        );
+      //   );
 
-  fs.writeFile( 
-    'index.html', teamTemplate,(answers),
- (err) => {
- err ? console.error(err) : console.log('Generating HTML...');
-    } )
-  })
-}
-    });
+//   fs.writeFile( 
+//     'index.html', teamTemplate,(answers),
+//  (err) => {
+//  err ? console.error(err) : console.log('Generating HTML...');
+//     } )
+    
+//   })
+// }
+//     })
